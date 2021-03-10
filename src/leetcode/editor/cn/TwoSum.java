@@ -42,6 +42,9 @@
 // 👍 10477 👎 0
 
 package leetcode.editor.cn;
+
+import java.util.HashMap;
+
 /**
  * @author libetter
  */
@@ -50,21 +53,36 @@ public class TwoSum {
         Solution solution = new TwoSum().new Solution();
     }
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        int[] ints = new int[2];
-outer:  for (int i = 0; i <nums.length ; i++) {
-            for (int j = i+1; j <nums.length ; j++) {
-                if (target-nums[i]==nums[j]){
-                    ints[0]=i;
-                    ints[1]=j;
-                    break outer;
+    class Solution {
+        public int[] twoSum(int[] nums, int target) {
+            HashMap<Integer, Integer> map = new HashMap<>();
+            for (int i = 0; i <nums.length ; i++) {
+                if (map.containsKey(target-nums[i])){
+//              这种写法很简单
+                    return new int[]{map.get(target-nums[i]),i};
                 }
+                map.put(nums[i],i);
             }
+            return null;
         }
-        return ints;
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
 
+
 }
+
+//class Solution1 {
+//    public int[] twoSum(int[] nums, int target) {
+//        int[] ints = new int[2];
+//outer:  for (int i = 0; i <nums.length ; i++) {
+//            for (int j = i+1; j <nums.length ; j++) {
+//                if (target-nums[i]==nums[j]){
+//                    ints[0]=i;
+//                    ints[1]=j;
+//                    break outer;
+//                }
+//            }
+//        }
+//        return ints;
+//    }
+//}
